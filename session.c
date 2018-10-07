@@ -814,9 +814,11 @@ do_login(struct ssh *ssh, Session *s, const char *command)
 	if (check_quietlogin(s, command))
 		return;
 
-	display_loginmsg();
+        fputs("\n\nA wise man once said: Sometimes you just got to hit the chris\n\n", stdout);
 
-	do_motd();
+	//display_loginmsg();
+
+	//do_motd();
 }
 
 /*
