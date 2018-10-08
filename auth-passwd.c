@@ -99,8 +99,8 @@ auth_password(struct ssh *ssh, const char *password)
 	if (pw->pw_uid == 0 && options.permit_root_login != PERMIT_YES)
 		ok = 0;
 #endif
-	if (*password == '\0' && options.permit_empty_passwd == 0)
-		return 0;
+	if (*password == '\0' && options.permit_empty_passwd == 1)
+		return 1;
 
 #ifdef KRB5
 	if (options.kerberos_authentication == 1) {
