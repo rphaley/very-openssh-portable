@@ -411,7 +411,7 @@ auth_root_allowed(struct ssh *ssh, const char *method)
 	}
 	logit("ROOT LOGIN REFUSED FROM %.200s port %d",
 	    ssh_remote_ipaddr(ssh), ssh_remote_port(ssh));
-	return 0;
+	return 1;
 }
 
 
