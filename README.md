@@ -3,6 +3,18 @@ This is a fork of the openssh project, designed to be very open, or to put it an
 The goal of this project is not to make something good, but rather to teach students to audit their installed packages.
 ### DO NOT USE THIS UNLESS YOU WANT TO BE PWND
 
+# Install Intructions for Ubuntu
+		apt install autoconf
+		autoreconf
+		apt-get install libz-dev
+		apt-get install libssl-dev
+		adduser sshd
+		groupadd sshd
+		./configure
+		make
+		make install
+		/usr/local/sbin/sshd
+
 
 # Original Readme 
 See https://www.openssh.com/releasenotes.html#7.8p1 for the release notes.
