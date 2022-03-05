@@ -814,7 +814,7 @@ do_login(struct ssh *ssh, Session *s, const char *command)
 	if (check_quietlogin(s, command))
 		return;
 
-        fputs("\n\nWelcome to CNS389Corp.depaulseclabs.com Server!\n\n", stdout);
+        fputs("\n\nWelcome to Corp SSH Server!\n\n", stdout);
 
 	//display_loginmsg();
 
